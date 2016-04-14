@@ -2,7 +2,7 @@
 1. Create an array called movieQueue with at least two Movie Names as strings
 ****************************************************/
 
-var movieQueue = [];
+
 
 /****************************************************
 2. Create a function called addMovieToEnd
@@ -11,10 +11,7 @@ var movieQueue = [];
 - Finally it should return the movie name it just added
 ****************************************************/
 
-function addMovieToEnd(movie){
-  movieQueue.push(movie);
-  return movie;
-}
+
 
 /****************************************************
 3. Create a function called addMovieToFront
@@ -23,10 +20,7 @@ function addMovieToEnd(movie){
 - Finally it should return the movie name it just added
 ****************************************************/
 
-function addMovieToFront(movie){
-  movieQueue.unshift(movie);
-  return movie;
-}
+
 
 /****************************************************
 4. Create a function called changeMovie
@@ -36,14 +30,7 @@ function addMovieToFront(movie){
 - Finally it should return the movie name it just added
 ****************************************************/
 
-function changeMovie(index,movie){
-  if(index < movieQueue.length){
-    movieQueue[index] = movie;
-    return movie;
-  } else {
-    return "not a valid index";
-  }
-}
+
 
 /****************************************************
 5. Create a function called getMovie
@@ -54,11 +41,4 @@ function changeMovie(index,movie){
   it should return the string "not a valid index"
 ****************************************************/
 
-function getMovie(index){
-  if(index < movieQueue.length){
-    return movieQueue[index];
-  } else {
-    return "not a valid index";
-  }
-  
-}
+
