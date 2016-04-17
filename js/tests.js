@@ -76,9 +76,87 @@ QUnit.module("Movie Site", function() {
     var result = getMovie(1);
     
     ok(movieQueue[1] === result, "When movieQueue is [\"zero\",\"one\",\"two\"], getMovie(1) returns \"one\"");
+    ok("not a valid index" === getMovie(movieQueue.length), "When the index is too large, getMovie() returns 'not a valid index'");
    
+   
+    movieQueue = saveArray;
+    expect(3);
+  });
+  
+  //isLengthGreaterThan Function
+  test("isLengthGreaterThan()", function(){
+  ok(typeof isLengthGreaterThan !== "undefined", "isLengthGreaterThan() function is defined.");
+    
+    var saveArray = movieQueue;
+    movieQueue = ["one","two","three"];
+    
+    var result = isLengthGreaterThan(2);
+    
+    ok(result === true, "When movieQueue is [\"zero\",\"one\",\"two\"], isLengthGreaterThan(2) returns true");
+    
+    var result = isLengthGreaterThan(3);
+    ok(result === false, "When movieQueue is [\"zero\",\"one\",\"two\"], isLengthGreaterThan(3) returns false");
+   
+    var result = isLengthGreaterThan(4);
+    ok(result === false, "When movieQueue is [\"zero\",\"one\",\"two\"], isLengthGreaterThan(4) returns false");
+   
+    movieQueue = saveArray;
+    expect(4);
+  });
+  
+  //findMovie Function
+  test("findMovie()", function(){
+  ok(typeof findMovie !== "undefined", "findMovie() function is defined.");
+    
+    var saveArray = movieQueue;
+    movieQueue = ["one","two","three"];
+    
+    var result = findMovie("one");
+    
+    ok(result === true, "When movieQueue is [\"zero\",\"one\",\"two\"], findMovie(\"one\") returns true");
+    
+    var result = findMovie("four");
+    ok(result === false, "When movieQueue is [\"zero\",\"one\",\"two\"], findMovie(\"four\") returns false");
+   
+   
+    movieQueue = saveArray;
+    expect(3);
+  });
+  
+  test("addMoviesToEnd()", function(){
+  ok(typeof addMoviesToEnd !== "undefined", "addMoviesToEnd() function is defined.");
+    
+    var saveArray = movieQueue;
+    movieQueue = ["one","two","three"];
+    
+    var spy = sinon.spy(window, "addMovieToEnd");
+    var originalValue = movieQueue[0];
+    var currLength = movieQueue.length;
+    var result = addMoviesToEnd();
+    
+    ok(movieQueue.length === (currLength + 3), "addMoviesToEnd() increases the length of the movieQueue array by 3");
+    ok(originalValue === movieQueue[0], "addMoviesToEnd adds the values at the end of the movieQueue array and does not modify the ones at the beginning");
+    ok(result[0] === movieQueue[3], "addMoviesToEnd() returns the array of movies added");
+    ok(spy.calledThrice === true, "addMoviesToEnd() calls addMovieToEnd() 3 times");
+    
+    movieQueue = saveArray;
+    expect(5);
+  });
+  
+  test("listMovies", function(){
+  ok(typeof listMovies !== "undefined", "listMovies() function is defined.");
+    
+    var saveArray = movieQueue;
+    movieQueue = ["one","two","three"];
+    
+    var result = listMovies();
+    
+    equal(result, 'Here are the current movies: one, two, three, ', "listMovies() when movieQueue is ['one', 'two', 'three'] should return 'Here are the current movies: one, two, three, '");
+    
     movieQueue = saveArray;
     expect(2);
   });
+  
+  
 
 });
